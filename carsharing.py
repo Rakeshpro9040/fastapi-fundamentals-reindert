@@ -5,12 +5,12 @@ app = FastAPI()
 
 
 @app.get("/")
-def welcome():
+def welcome(name):
     """Return a friendly welcome message!"""
-    return {"message": "Welcome to the car sharing service!"}
+    return {"message": f"Welcome {name}, to the car sharing service!"}
 
 
 @app.get("/date")
-def welcome():
-    """Return a friendly welcome message!"""
+def date():
+    """Return the current date/time!"""
     return {"message": datetime.now()}

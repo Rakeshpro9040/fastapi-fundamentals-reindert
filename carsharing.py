@@ -17,10 +17,11 @@ db = [
 
 
 @app.get("/api/cars")
-def get_cars():
-    ids = [x["id"] for x in db]
-    """Return all cars"""
-    return ids
+def get_cars(size=None):
+    if size:
+        return [car for car in db if car["size"] == size]
+    else:
+        return db
 
 
 @app.get("/")

@@ -11,3 +11,12 @@
 ### Test urls
 - http://127.0.0.1:8000/docs
 - http://127.0.0.1:8000/redoc
+
+## Kill process
+When running debugger, make sure to kill any existing processes!
+### Windows
+- netstat -ano | findstr :8000
+- taskkill /F /PID PID
+### Mac
+- lsof -i :8000
+- kill PID

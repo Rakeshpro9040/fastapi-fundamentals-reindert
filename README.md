@@ -20,3 +20,6 @@ When running debugger, make sure to kill any existing processes!
 ### Mac
 - lsof -i :8000
 - kill PID
+
+### Models
+- Fastapi uses Pydantic model

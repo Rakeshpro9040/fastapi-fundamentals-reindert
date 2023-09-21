@@ -3,7 +3,7 @@ from datetime import datetime
 import uvicorn
 from fastapi import FastAPI, HTTPException
 
-from schemas import load_db, save_db, Car
+from schemas import load_db, save_db, CarInput, CarOutput
 
 app = FastAPI(title="fastapi-fundamentals-reindert-openapi")
 
@@ -31,10 +31,17 @@ def car_by_id(id: int):
         raise HTTPException(status_code=404, detail=f"No car with id={id}.")
 
 
-@app.post("/api/cars/")
-def add_car(car: Car):
-    db.append(car)
+# Here CarOutput is an argument to the decorator
+# This will be used by the fastapi to validate the response of our functions
+@app.post("/api/cars/", response_model=CarOutput)
+def add_car(car: CarInput) -> CarOutput:
+    # id=len(db)+1 will be later replaced by DB's sequence/identity column
+    new_car = CarOutput(size=car.size, doors=car.doors,
+                        fuel=car.fuel, transmission=car.transmission,
+                        id=len(db)+1)
+    db.append(new_car)
     save_db(db)
+    return new_car
 
 
 if __name__ == "__main__":

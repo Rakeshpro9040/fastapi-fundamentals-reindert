@@ -25,76 +25,94 @@
         "fuel": "electric",
         "doors": 3,
         "transmission": "auto",
-        "id": 2
+        "id": 2,
+        "trips": [
+            {
+                "start": 500,
+                "end": 555,
+                "description": "trip1",
+                "id": 1
+            }
+        ]
     },
     {
         "size": "s",
         "fuel": "gasoline",
         "doors": 5,
         "transmission": "manual",
-        "id": 3
+        "id": 3,
+        "trips": []
     },
     {
         "size": "m",
         "fuel": "electric",
         "doors": 3,
         "transmission": "auto",
-        "id": 4
+        "id": 4,
+        "trips": []
     },
     {
         "size": "m",
         "fuel": "hybrid",
         "doors": 5,
         "transmission": "auto",
-        "id": 5
+        "id": 5,
+        "trips": []
     },
     {
         "size": "m",
         "fuel": "gasoline",
         "doors": 5,
         "transmission": "manual",
-        "id": 6
+        "id": 6,
+        "trips": []
     },
     {
         "size": "l",
         "fuel": "diesel",
         "doors": 5,
         "transmission": "manual",
-        "id": 7
+        "id": 7,
+        "trips": []
     },
     {
         "size": "l",
         "fuel": "electric",
         "doors": 5,
         "transmission": "auto",
-        "id": 8
+        "id": 8,
+        "trips": []
     },
     {
         "size": "l",
         "fuel": "hybrid",
         "doors": 5,
         "transmission": "auto",
-        "id": 9
+        "id": 9,
+        "trips": []
     },
     {
         "size": "string",
         "fuel": "electric",
         "doors": 0,
         "transmission": "auto",
-        "id": 0
+        "id": 0,
+        "trips": []
     },
     {
         "size": "m",
         "fuel": "electric",
         "doors": 6,
         "transmission": "auto",
-        "id": 11
+        "id": 11,
+        "trips": []
     },
     {
         "size": "l",
         "fuel": "diesel",
         "doors": 2,
         "transmission": null,
-        "id": 12
+        "id": 12,
+        "trips": []
     }
 ]

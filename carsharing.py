@@ -3,9 +3,9 @@ from datetime import datetime
 import uvicorn
 from fastapi import FastAPI, HTTPException
 
-from schemas import load_db
+from schemas import load_db, save_db, Car
 
-app = FastAPI()
+app = FastAPI(title="fastapi-fundamentals-reindert-openapi")
 
 db = load_db()
 # Replaced dict with object so access like car.id instead of car["id"]
@@ -29,6 +29,12 @@ def car_by_id(id: int):
     else:
         # HTTPException is the in-built fastAPI method to raise exception
         raise HTTPException(status_code=404, detail=f"No car with id={id}.")
+
+
+@app.post("/api/cars/")
+def add_car(car: Car):
+    db.append(car)
+    save_db(db)
 
 
 if __name__ == "__main__":

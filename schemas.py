@@ -30,3 +30,9 @@ def load_db() -> list[Car]:
 """
 parse_obj is a pydantic method, which takes dict and return that as obj
 """
+
+
+def save_db(cars: list[Car]):
+    with open("cars.json", "w") as f:
+        json.dump([car.dict() for car in cars], f, indent=4)
+

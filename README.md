@@ -22,4 +22,5 @@ When running debugger, make sure to kill any existing processes!
 - kill PID
 
 ### Models
-- Fastapi uses Pydantic model
+- Fastapi uses Pydantic BaseModel
+- refer pydantic foc for more details

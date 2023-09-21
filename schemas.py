@@ -2,6 +2,16 @@ import json
 from pydantic import BaseModel
 
 
+class TripInput(BaseModel):
+    start: int
+    end: int
+    description: str
+
+
+class TripOutput(TripInput):
+    id: int
+
+
 class CarInput(BaseModel):
     # This inherits BaseModel __init__ method
     size: str
@@ -35,7 +45,7 @@ c.dict()
 # from client we will not take id as input, but we must return it
 class CarOutput(CarInput):
     id: int
-
+    trips: list[TripOutput] = []
 
 
 def load_db() -> list[CarOutput]:

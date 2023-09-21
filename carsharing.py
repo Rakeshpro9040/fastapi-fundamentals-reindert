@@ -3,7 +3,7 @@ from datetime import datetime
 import uvicorn
 from fastapi import FastAPI, HTTPException
 
-from schemas import load_db, save_db, CarInput, CarOutput
+from schemas import load_db, save_db, CarInput, CarOutput, TripOutput, TripInput
 
 app = FastAPI(title="fastapi-fundamentals-reindert-openapi")
 
@@ -66,6 +66,22 @@ def change_car(id: int, new_data: CarInput) -> CarOutput:
         car.doors = new_data.doors
         save_db(db)
         return car
+    else:
+        raise HTTPException(status_code=404, detail=f"No car with id={id}")
+
+
+# Here car_id is query parameter and trip as request body
+@app.post(path="/api/cars/{car_id}/trips", response_model=TripOutput)
+def add_trip(car_id: int, trip: TripInput) -> TripOutput:
+    matches = [car for car in db if car.id == car_id]
+    if matches:
+        car = matches[0]
+        new_trip = TripOutput(id=len(car.trips)+1,
+                              start=trip.start, end=trip.end,
+                              description=trip.description)
+        car.trips.append(new_trip)
+        save_db(db)
+        return new_trip
     else:
         raise HTTPException(status_code=404, detail=f"No car with id={id}")
 

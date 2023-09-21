@@ -4,7 +4,21 @@
         "fuel": "gasoline",
         "doors": 3,
         "transmission": "auto",
-        "id": 1
+        "id": 1,
+        "trips": [
+            {
+                "start": 0,
+                "end": 5,
+                "description": "Groceries",
+                "id": 1
+            },
+            {
+                "start": 218,
+                "end": 257,
+                "description": "Weekend batch trip",
+                "id": 2
+            }
+        ]
     },
     {
         "size": "s",

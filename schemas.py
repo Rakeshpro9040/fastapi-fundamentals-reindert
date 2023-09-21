@@ -9,6 +9,18 @@ class CarInput(BaseModel):
     doors: int
     transmission: str | None = "auto"
 
+    # Instead the client tools generates dummy data
+    # We can use the below to provide dummy data to fastapi
+    class Config:
+        json_schema_extra = {
+            "example": {
+                "size": "m",
+                "doors": 4,
+                "transmission": "manual",
+                "fuel": "hybrid"
+            }
+        }
+
 
 """
 Test this with below commands (Only kwargs allowed) -

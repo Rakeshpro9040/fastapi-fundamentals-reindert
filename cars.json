@@ -77,17 +77,10 @@
         "id": 11
     },
     {
-        "size": "m",
-        "fuel": "electric",
-        "doors": 6,
-        "transmission": "auto",
+        "size": "l",
+        "fuel": "diesel",
+        "doors": 2,
+        "transmission": null,
         "id": 12
-    },
-    {
-        "size": "m",
-        "fuel": "electric",
-        "doors": 6,
-        "transmission": "auto",
-        "id": 13
     }
 ]

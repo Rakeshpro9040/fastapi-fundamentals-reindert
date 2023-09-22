@@ -21,6 +21,13 @@ When running debugger, make sure to kill any existing processes!
 - lsof -i :8000
 - kill PID
 
-### Models
+## Models
 - Fastapi uses Pydantic BaseModel
 - refer pydantic foc for more details
+
+## SQLModel
+- Built on SQLAlchemy + Pydantic
+- SQLAlchemy to read various databases using ORM
+- Model calsses are Pydantic Models, easily integrated with FastAPI
+- Object-Relation Mapping: Classes=Tables, Objects=Rows, Attributes=Columns
+- python -m pip install sqlmodel

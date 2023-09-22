@@ -1,14 +1,26 @@
-from datetime import datetime
-
 import uvicorn
 from fastapi import FastAPI, HTTPException
+from sqlmodel import create_engine, SQLModel, Session
 
-from schemas import load_db, save_db, CarInput, CarOutput, TripOutput, TripInput
+from schemas import load_db, save_db, CarInput, CarOutput, TripOutput, TripInput, Car
 
 app = FastAPI(title="fastapi-fundamentals-reindert-openapi")
 
 db = load_db()
 # Replaced dict with object so access like car.id instead of car["id"]
+
+
+engine = create_engine(
+    "sqlite:///carsharing.db",
+    connect_args={"check_same_thread": False},  # Needed for SQLite, to run threads in async way
+    echo=True  # Log generated SQL, in prod set this as off
+)
+
+
+@app.on_event("startup")
+def on_startup():
+    SQLModel.metadata.create_all(engine)
+    # Here it will create db and model class object as table
 
 
 @app.get("/api/cars")
@@ -33,15 +45,14 @@ def car_by_id(id: int):
 
 # Here CarOutput is an argument to the decorator
 # This will be used by the fastapi to validate the response of our functions
-@app.post("/api/cars/", response_model=CarOutput)
-def add_car(car: CarInput) -> CarOutput:
-    # id=len(db)+1 will be later replaced by DB's sequence/identity column
-    new_car = CarOutput(size=car.size, doors=car.doors,
-                        fuel=car.fuel, transmission=car.transmission,
-                        id=len(db)+1)
-    db.append(new_car)
-    save_db(db)
-    return new_car
+@app.post(path="/api/cars/", response_model=Car)
+def add_car(car_input: CarInput) -> Car:
+    with Session(engine) as session:
+        new_car = Car.from_orm(car_input)
+        session.add(new_car)
+        session.commit()
+        session.refresh(new_car)
+        return new_car
 
 
 @app.delete(path="/api/cars/{id}", status_code=204)

@@ -1,8 +1,9 @@
 import json
-from pydantic import BaseModel
+# Removed pydantic(BaseModel) and use sqlmodel(SQLModel)
+from sqlmodel import SQLModel, Field
 
 
-class TripInput(BaseModel):
+class TripInput(SQLModel):
     start: int
     end: int
     description: str
@@ -12,7 +13,7 @@ class TripOutput(TripInput):
     id: int
 
 
-class CarInput(BaseModel):
+class CarInput(SQLModel):
     # This inherits BaseModel __init__ method
     size: str
     fuel: str | None = "electric"
@@ -32,14 +33,8 @@ class CarInput(BaseModel):
         }
 
 
-"""
-Test this with below commands (Only kwargs allowed) -
-from schemas import Car
-c = Car(id=1, size="m", fuel="gas", doors=100, transmission="car")
-c = Car(id=1, size="m", doors=100)
-c.json()
-c.dict()
-"""
+class Car(CarInput, table=True):
+    id: int | None = Field(primary_key=True, default=None)
 
 
 # from client we will not take id as input, but we must return it

@@ -1,4 +1,4 @@
-### Note**:** Local repo is available in testpocwindows, so practice here!
+### Note: Local repo is available in testpocwindows, so practice here!
 
 ### python -c "import sys; print(sys.prefix != sys.base_prefix)"
 ### python -m pip install "fastapi[all]"

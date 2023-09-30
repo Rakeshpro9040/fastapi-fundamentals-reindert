@@ -1,6 +1,8 @@
+### Note**:** Local repo is available in testpocwindows, so practice here!
+
 ### python -c "import sys; print(sys.prefix != sys.base_prefix)"
 ### python -m pip install "fastapi[all]"
-- Here [all] inidicates to install all dependent libs<br>
+- Here [all] indicates to install all dependent libs<br>
 - Main dependent lib is the uvicorn server
 
 ### uvicorn carsharing:app --reload
